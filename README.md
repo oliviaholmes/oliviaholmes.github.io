@@ -53,8 +53,8 @@ Visit the live site: [oliviaholmes.github.io](https://oliviaholmes.github.io)
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/oliviamallon/oliviamallon.github.io.git
-   cd oliviamallon.github.io
+   git clone https://github.com/oliviaholmes/oliviaholmes.github.io.git
+   cd oliviaholmes.github.io
    ```
 
 2. **Install dependencies**
@@ -160,10 +160,10 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📧 Contact
 
-**Olivia Mallon**
-- Portfolio: [oliviamallon.github.io](https://oliviamallon.github.io)
-- LinkedIn: [linkedin.com/in/oliviamallon](https://linkedin.com/in/oliviamallon)
-- GitHub: [@oliviamallon](https://github.com/oliviamallon)
+**Olivia Holmes**
+- Portfolio: [oliviaholmes.github.io](https://oliviaholmes.github.io)
+- LinkedIn: [linkedin.com/in/oliviaholmes](https://linkedin.com/in/oliviaholmes)
+- GitHub: [@oliviaholmes](https://github.com/oliviaholmes)
 - Email: olivia@example.com
 
 ---
