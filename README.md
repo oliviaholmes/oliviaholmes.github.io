@@ -1,10 +1,10 @@
-# 🌟 Olivia Mallon - Personal Portfolio Website
+# 🌟 Olivia Holmes - Personal Portfolio Website
 
 A modern, interactive portfolio website built with Next.js and TypeScript. Features a beautiful blue/purple design theme with complete light/dark mode support.
 
 ## 🚀 Live Demo
 
-Visit the live site: [oliviamallon.github.io](https://oliviamallon.github.io)
+Visit the live site: [oliviaholmes.github.io](https://oliviaholmes.github.io)
 
 ## ✨ Features
 
