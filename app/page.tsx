@@ -252,7 +252,7 @@ export default function HomePage() {
       <VolunteerSection />
 
       {/* Projects Section */}
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
 
       {/* Contact Section */}
       <ContactSection />

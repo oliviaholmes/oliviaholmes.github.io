@@ -13,6 +13,8 @@ export default function ContactSection() {
     email: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -21,10 +23,42 @@ export default function ContactSection() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '7675a9d3-697c-407a-87f6-59cb8516cf35',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`
+        })
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -159,15 +193,25 @@ export default function ContactSection() {
             
             <button
               type="submit"
+              disabled={isSubmitting}
               className={`group w-full rounded-brick px-8 py-4 transition-all duration-300 transform hover:scale-105 font-bold relative overflow-hidden border-3 shadow-brick hover:shadow-brick-hover ${
-                theme === 'dark'
+                isSubmitting 
+                  ? 'bg-gray-400 text-white border-gray-500 cursor-not-allowed'
+                  : theme === 'dark'
                   ? 'bg-blue-primary text-white border-blue-light hover:bg-blue-light'
                   : 'bg-blue-primary text-white border-blue-dark hover:bg-blue-dark'
               }`}
             >
-              <span className="relative z-10">✉️ Send Message</span>
+              <span className="relative z-10">
+                {isSubmitting ? '⏳ Sending...' : submitStatus === 'success' ? '✅ Sent!' : '✉️ Send Message'}
+              </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </button>
+            {submitStatus === 'error' && (
+              <p className="text-red-500 text-center mt-2 font-semibold">
+                Failed to send. Please try again or email directly.
+              </p>
+            )}
           </form>
         </div>
       </div>
